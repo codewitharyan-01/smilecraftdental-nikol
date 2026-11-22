@@ -1,4 +1,4 @@
-﻿/* ==========================================================================
+/* ==========================================================================
    Smilecraft — scroll effects engine
    Auto-tags blocks on every page, reveals them on scroll, adds a progress bar,
    counts numbers up, and keeps a fallback so nothing can stay hidden.
@@ -143,5 +143,6 @@
       par();
     }
   }
+  document.documentElement.classList.add("fx-ready");
 })();
 

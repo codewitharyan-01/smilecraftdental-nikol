@@ -2528,17 +2528,17 @@ body[data-scrolled="true"] .dock__bar { padding-block: .22rem; background: rgba(
   background: var(--blue); transform: scaleX(0); transform-origin: 0 50%;
   z-index: 210; pointer-events: none;
 }
-.js .fx {
+.fx-ready .fx {
   opacity: 0;
   transform: translateY(26px) scale(.985);
   filter: blur(4px);
   transition: opacity .85s var(--ease-out), transform .95s var(--ease-out), filter .85s var(--ease-out);
   transition-delay: var(--d, 0ms);
 }
-.js .fx.is-in { opacity: 1; transform: none; filter: none; }
+.fx-ready .fx.is-in { opacity: 1; transform: none; filter: none; }
 .doctor__media img { will-change: transform; }
 
 @media (prefers-reduced-motion: reduce) {
-  .js .fx { opacity: 1; transform: none; filter: none; transition: none; }
+  .fx-ready .fx { opacity: 1; transform: none; filter: none; transition: none; }
   .fx-progress { display: none; }
 }
