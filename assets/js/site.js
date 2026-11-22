@@ -201,7 +201,7 @@
   }
 
   /* ---------- Marquee ----------------------------------------------------- */
-  doc.querySelectorAll(".marquee__track").forEach(function (track) {
+  doc.querySelectorAll(".marquee__track, .ticker__track").forEach(function (track) {
     track.innerHTML += track.innerHTML;
   });
 
