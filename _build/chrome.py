@@ -154,6 +154,7 @@ def head(title, desc, root="", canonical="", og="assets/img/smile-portrait.jpg",
 <link rel="stylesheet" href="{root}assets/css/theme-minimal.css">
 <link rel="stylesheet" href="{root}assets/css/theme-soft.css">
 <link rel="stylesheet" href="{root}assets/css/theme-soft-v2.css">
+<link rel="stylesheet" href="{root}assets/css/theme-rich.css">
 <noscript><style>[data-reveal]{{opacity:1!important;transform:none!important}}</style></noscript>
 {ld}{extra}
 </head>
