@@ -150,6 +150,7 @@ def head(title, desc, root="", canonical="", og="assets/img/smile-portrait.jpg",
 <link rel="stylesheet" href="{root}assets/css/site.css">
 <link rel="stylesheet" href="{root}assets/css/theme.css">
 <link rel="stylesheet" href="{root}assets/css/theme-swiss.css">
+<link rel="stylesheet" href="{root}assets/css/theme-dark.css">
 <noscript><style>[data-reveal]{{opacity:1!important;transform:none!important}}</style></noscript>
 {ld}{extra}
 </head>
