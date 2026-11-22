@@ -1,0 +1,7 @@
+[0:v]scale=2200:-2,zoompan=z='min(1+0.00055*on,1.12)':d=120:x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':s=1600x900:fps=30,setsar=1,format=yuv420p[v0];
+[1:v]scale=2200:-2,zoompan=z='max(1.12-0.00055*on,1)':d=120:x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':s=1600x900:fps=30,setsar=1,format=yuv420p[v1];
+[2:v]scale=2200:-2,zoompan=z='min(1+0.00055*on,1.12)':d=120:x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':s=1600x900:fps=30,setsar=1,format=yuv420p[v2];
+[3:v]scale=2200:-2,zoompan=z='max(1.12-0.00055*on,1)':d=120:x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':s=1600x900:fps=30,setsar=1,format=yuv420p[v3];
+[v0][v1]xfade=transition=fade:duration=0.8:offset=3.2[a];
+[a][v2]xfade=transition=fade:duration=0.8:offset=6.4[b];
+[b][v3]xfade=transition=fade:duration=0.8:offset=9.6[out]
