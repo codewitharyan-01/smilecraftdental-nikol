@@ -140,7 +140,7 @@ def head(title, desc, root="", canonical="", og="assets/img/smile-portrait.jpg",
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="{root}assets/css/main.css">
 <link rel="stylesheet" href="{root}assets/css/pages.css">
@@ -149,6 +149,7 @@ def head(title, desc, root="", canonical="", og="assets/img/smile-portrait.jpg",
 <link rel="stylesheet" href="{root}assets/css/responsive.css">
 <link rel="stylesheet" href="{root}assets/css/site.css">
 <link rel="stylesheet" href="{root}assets/css/theme.css">
+<link rel="stylesheet" href="{root}assets/css/theme-swiss.css">
 <noscript><style>[data-reveal]{{opacity:1!important;transform:none!important}}</style></noscript>
 {ld}{extra}
 </head>
