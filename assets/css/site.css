@@ -1,0 +1,349 @@
+/* ==========================================================================
+   Smilecraft — AUTHORITATIVE LAYOUT LAYER (loads last)
+   Mobile-first. Every breakpoint is min-width, so the cascade can only
+   ever ADD columns as the screen grows — never fight itself on the way down.
+   ========================================================================== */
+
+/* ---------- 1. Hard guards ------------------------------------------------ */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  /* `clip` stops horizontal scroll WITHOUT creating a scroll container,
+     which is what keeps position:sticky working on iOS. */
+  overflow-x: clip;
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  overflow-x: clip;
+  margin: 0;
+  min-width: 0;
+}
+
+img, svg, video, iframe, canvas, table, pre {
+  max-width: 100%;
+}
+
+/* Media that must keep filling its frame */
+.hero__media img,
+.doctor__img img,
+.split__media img,
+.service__img img,
+.strip img,
+.gal__item img,
+.hgal-item img,
+.tour__slides img,
+.tour__video,
+.video-card video,
+.video-card img,
+.ba img,
+.visit__map iframe,
+.map-frame iframe,
+.fig img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Nothing may force the page wider than the screen */
+.wrap, .section, .hero, .site-head__in, .topbar__in, .foot__grid,
+.hero__grid, .services, .why, .feature, .doctor, .strip, .rev-grid,
+.info-cards, .visit, .cta-band__in, .videos, .process, .steps,
+.form-grid, .article, .contact-grid, .book-layout, .gal, .grid-2, .grid-3 {
+  min-width: 0;
+}
+.site-head__in > *, .hero__grid > *, .foot__grid > *,
+.services > *, .rev-grid > *, .info-cards > *, .videos > *,
+.process > *, .form-grid > *, .why > * {
+  min-width: 0;
+}
+
+h1, h2, h3, h4, p, li, a, span, dd, dt, address, blockquote, td, th {
+  overflow-wrap: break-word;
+}
+
+/* ---------- 2. Container -------------------------------------------------- */
+.wrap {
+  width: 100%;
+  max-width: var(--max);
+  margin-inline: auto;
+  padding-inline: clamp(16px, 4vw, 40px);
+}
+.wrap--narrow { max-width: 760px; }
+.wrap--wide   { max-width: var(--max-wide); }
+
+/* ---------- 3. Fluid type — scales with the screen, no breakpoints -------- */
+h1 { font-size: clamp(1.7rem, 5.2vw + 0.4rem, 3.5rem); }
+h2 { font-size: clamp(1.4rem, 3.2vw + 0.5rem, 2.5rem); }
+h3 { font-size: clamp(1.05rem, 1vw + 0.85rem, 1.25rem); }
+.lead { font-size: clamp(1rem, 0.6vw + 0.9rem, 1.19rem); }
+
+/* ---------- 4. Header: mobile first -------------------------------------- */
+.burger { display: inline-flex; }
+.nav    { display: none; }
+
+.site-head__in {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 62px;
+}
+.brand { flex: none; min-width: 0; }
+.brand__text { min-width: 0; }
+.brand__name { white-space: nowrap; }
+.head-actions { margin-left: auto; display: flex; align-items: center; gap: 8px; flex: none; }
+
+/* On small screens the tab bar carries the CTA */
+.head-actions .btn { display: none; }
+
+.topbar__in {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 32px;
+}
+.topbar__item--addr,
+.topbar__item--hours { display: none; }
+
+/* ---------- 5. Drawer / tab bar / floats --------------------------------- */
+.drawer { z-index: 130; height: 100vh; height: 100dvh; }
+.mbar { display: flex; z-index: 90; }
+.wa-float { z-index: 92; bottom: 80px; right: 14px; }
+.to-top   { z-index: 93; bottom: 140px; right: 14px; left: auto; }
+.sticky-book { display: none; }
+.site-head { z-index: 95; }
+.site-foot { padding-bottom: 78px; }
+
+/* ---------- 6. Hero: stacked --------------------------------------------- */
+.hero__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 26px;
+  align-items: center;
+}
+.hero__copy { max-width: 100%; order: 1; }
+.hero__visual { order: 2; max-width: 560px; width: 100%; margin-inline: auto; }
+.hero__media { aspect-ratio: 4 / 3.2; width: 100%; }
+.hero__open { font-size: 0.75rem; padding: 7px 12px; }
+.hero__card { display: none; }
+.hero__vlabel { display: none; }
+.hero__actions .btn { width: 100%; }
+.hero__trust {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin-top: 22px;
+  padding-top: 18px;
+}
+
+/* ---------- 7. Every grid: 1 column by default --------------------------- */
+.trust__grid,
+.services,
+.why,
+.info-cards,
+.rev-grid,
+.strip,
+.foot__grid,
+.form-grid,
+.steps,
+.process,
+.gal,
+.grid-2,
+.grid-3,
+.videos,
+.visit,
+.contact-grid,
+.article,
+.book-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+.feature { display: grid; grid-template-columns: 1fr; gap: 24px; }
+.feature--reverse .feature__media { order: 0; }
+.doctor  { display: grid; grid-template-columns: 1fr; gap: 24px; }
+.doctor__img { max-width: 440px; width: 100%; margin-inline: auto; }
+.split   { display: grid; grid-template-columns: 1fr; gap: 24px; }
+.split--reverse .split__media { order: 0; }
+.split__media { width: 100%; }
+
+/* Trust strip stacks cleanly */
+.trust__item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0;
+  border: 0;
+}
+
+/* Footer stacks */
+.foot__grid { gap: 22px; }
+
+/* Gallery: one column, fixed comfortable height */
+.gal__a, .gal__b, .gal__c, .gal__d, .gal__e, .gal__f, .gal__g {
+  grid-column: span 1;
+  height: 200px;
+}
+
+/* Video cards */
+.video-card { min-height: 0; }
+.video-card--wide,
+.video-card--tall { aspect-ratio: 16 / 10; }
+
+/* Comparison slider */
+.ba { aspect-ratio: 4 / 3.2; width: 100%; }
+.ba__knob { width: 38px; height: 38px; }
+
+/* Forms */
+.form-grid .field--full { grid-column: 1 / -1; }
+.cred-list li { display: grid; grid-template-columns: 1fr; gap: 2px; }
+.cred-list li > span:last-child { text-align: left; }
+
+/* Tables */
+.hours { width: 100%; }
+.hours th, .hours td {
+  padding: 8px 0;
+  font-size: 0.875rem;
+  overflow-wrap: anywhere;
+}
+.hours td:last-child { white-space: nowrap; }
+
+/* Sticky sidebars must not stick on small screens */
+.aside-card, .book-aside, .sticky-sec__aside { position: static; }
+.urgent { display: grid; grid-template-columns: 1fr; gap: 12px; }
+
+/* Section rhythm */
+.section { padding-block: 46px; }
+
+/* ---------- 8. 480px+ ---------------------------------------------------- */
+@media (min-width: 480px) {
+  .form-grid { grid-template-columns: 1fr 1fr; }
+  .info-cards { grid-template-columns: 1fr 1fr; }
+  .trust__grid { grid-template-columns: 1fr 1fr; gap: 18px 16px; }
+  .rev-grid { grid-template-columns: 1fr 1fr; }
+  .foot__grid { grid-template-columns: 1fr 1fr; }
+  .hero__actions .btn { width: auto; }
+  .hero__card { display: flex; }
+}
+
+/* ---------- 9. 700px+ --------------------------------------------------- */
+@media (min-width: 700px) {
+  .section { padding-block: 64px; }
+  .site-head__in { min-height: 68px; }
+  .topbar__in { justify-content: space-between; }
+  .topbar__item--addr,
+  .topbar__item--hours { display: inline-flex; }
+  .head-actions .btn { display: inline-flex; }
+  .services { grid-template-columns: 1fr 1fr; }
+  .why { grid-template-columns: 1fr 1fr; }
+  .strip { grid-template-columns: 1fr 1fr; }
+  .steps { grid-template-columns: 1fr 1fr; }
+  .process { grid-template-columns: 1fr 1fr; }
+  .gal__a, .gal__b { grid-column: span 2; height: 260px; }
+  .gal__c, .gal__d, .gal__e { grid-column: span 1; }
+  .hero__trust { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .visit { grid-template-columns: 1fr; }
+  .visit__map { min-height: 280px; }
+  .cta-band__in { grid-template-columns: 1fr; }
+}
+
+/* ---------- 10. 900px+ — two column layouts ----------------------------- */
+@media (min-width: 900px) {
+  .section { padding-block: 84px; }
+  .site-head__in { min-height: 76px; }
+
+  .hero { padding-block: 40px 56px; }
+  .hero__grid { grid-template-columns: 1.04fr 0.96fr; gap: clamp(28px, 4vw, 56px); }
+  .hero__copy { order: 0; }
+  .hero__visual { order: 0; margin-inline: 0; max-width: none; }
+  .hero__media { aspect-ratio: 4 / 4.2; }
+  .hero__card { display: flex; }
+  .hero__trust { grid-template-columns: 1fr; }
+
+  .feature { grid-template-columns: 1fr 1fr; gap: clamp(24px, 4vw, 64px); }
+  .feature--reverse .feature__media { order: 2; }
+  .doctor { grid-template-columns: 0.85fr 1.15fr; gap: clamp(24px, 4vw, 60px); }
+  .doctor__img { margin-inline: 0; max-width: none; }
+  .split { grid-template-columns: 1fr 1fr; gap: clamp(24px, 4vw, 60px); }
+  .split--reverse .split__media { order: 2; }
+
+  .trust__grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; }
+  .trust__item { padding-inline: 18px; border-right: 1px solid var(--line); }
+  .trust__item:first-child { padding-left: 0; }
+  .trust__item:last-child { border-right: 0; }
+
+  .services { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .why { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .info-cards { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .rev-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .strip { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .steps { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .process { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+  .foot__grid { grid-template-columns: 1.4fr 1fr 1fr 1.2fr; gap: clamp(24px, 3vw, 44px); }
+  .gal__a { grid-column: span 7; height: 340px; }
+  .gal__b { grid-column: span 5; height: 340px; }
+  .gal__c { grid-column: span 4; height: 280px; }
+  .gal__d { grid-column: span 4; height: 280px; }
+  .gal__e { grid-column: span 4; height: 280px; }
+  .gal__f { grid-column: span 5; height: 300px; }
+  .gal__g { grid-column: span 7; height: 300px; }
+
+  .videos { grid-template-columns: 1.35fr 0.65fr; }
+  .video-card--wide { aspect-ratio: 16 / 9; }
+  .video-card--tall { aspect-ratio: 9 / 12; min-height: 260px; }
+
+  .visit { grid-template-columns: 0.9fr 1.1fr; }
+  .visit__map { min-height: 340px; }
+  .cta-band__in { grid-template-columns: 1.3fr 1fr; align-items: center; }
+  .cta-band__actions { justify-content: flex-end; }
+
+  .article { grid-template-columns: minmax(0, 1fr) 310px; gap: clamp(24px, 4vw, 60px); }
+  .aside-card { position: sticky; top: 100px; }
+  .contact-grid { grid-template-columns: 1fr 1.05fr; }
+  .book-layout { grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.85fr); }
+  .book-aside { position: sticky; top: 100px; }
+  .grid-2 { grid-template-columns: 1fr 1fr; }
+  .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .ba { aspect-ratio: 4 / 3; }
+  .hero__trust { grid-template-columns: repeat(3, minmax(0, auto)); gap: 10px 24px; }
+}
+
+/* ---------- 11. 1180px+ — full navigation ------------------------------- */
+@media (min-width: 1180px) {
+  .nav { display: flex; margin-left: auto; }
+  .burger { display: none; }
+  .mbar { display: none; }
+  .site-foot { padding-bottom: 0; }
+  .wa-float { bottom: 20px; right: 18px; }
+  .to-top { bottom: 20px; left: 18px; right: auto; }
+  .sticky-book { display: flex; }
+  .head-actions .btn { display: inline-flex; }
+}
+
+/* ---------- 12. 1440px+ -------------------------------------------------- */
+@media (min-width: 1440px) {
+  h1 { font-size: 3.6rem; }
+  .section { padding-block: 104px; }
+}
+
+/* ---------- 13. Touch + motion preferences ------------------------------ */
+@media (hover: none) {
+  [data-tilt]:hover { transform: none !important; }
+  .service:hover, .info-card:hover, .tile:hover, .rev:hover { transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+/* ---------- 14. Print ---------------------------------------------------- */
+@media print {
+  .topbar, .site-head, .mbar, .wa-float, .to-top, .sticky-book,
+  .drawer, .scroll-progress, .hero__actions, .cta-band__actions { display: none !important; }
+}
